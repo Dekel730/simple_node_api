@@ -1,0 +1,18 @@
+meta {
+  name: create post
+  type: http
+  seq: 2
+}
+
+post {
+  url: localhost:3001/api/post
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "message": "hey",
+    "sender": "4567"
+  }
+}
