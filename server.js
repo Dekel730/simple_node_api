@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import colors from 'colors';
 import { errorHandler } from './middleware/errorMiddleware.js';
+import postRoutes from './routes/postRoutes.js';
 
 dotenv.config();
 
@@ -21,5 +22,6 @@ app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 })
 
+app.use('/api/post', postRoutes);
 
 app.use(errorHandler);
