@@ -16,4 +16,13 @@ const createPost = async (req, res) => {
     })
 }
 
-export { createPost };
+const getPostBySender = async (req, res) => {
+    const sender = req.query.sender;
+    const posts = await Post.find({ sender });
+    res.json({
+        success: true,
+        posts
+    })
+}
+
+export { createPost, getPostBySender };
