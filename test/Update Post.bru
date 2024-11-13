@@ -1,0 +1,21 @@
+meta {
+  name: Update Post
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:3001/api/post/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 67320cef407c1bb1e21cb440
+}
+
+body:json {
+  {
+    "message": "hey updated"
+  }
+}
