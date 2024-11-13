@@ -1,0 +1,15 @@
+meta {
+  name: Get Post by Sender
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3001/api/post?sender=4567
+  body: none
+  auth: none
+}
+
+params:query {
+  sender: 4567
+}
