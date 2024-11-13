@@ -25,4 +25,28 @@ const getPostBySender = async (req, res) => {
     })
 }
 
-export { createPost, getPostBySender };
+const updatePost = async (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        res.status(400);
+        throw new Error("Please provide post id");
+    }
+    const { message } = req.body;
+    if (!message) {
+        res.status(400);
+        throw new Error("Please provide message");
+    }
+    const post = await Post.findById(id);
+    if (!post) {
+        res.status(404);
+        throw new Error("Post not found");
+    }
+    post.message = message || post.message;
+    await post.save();
+    res.json({
+        success: true,
+        post
+    })
+}
+
+export { createPost, getPostBySender, updatePost };
