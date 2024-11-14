@@ -1,0 +1,46 @@
+
+### post api
+
+
+### get posts by sender
+
+GET http://localhost:3001/api/post?sender=45678
+
+###
+
+### update post
+
+PUT http://localhost:3001/api/post/673211df2b040cf7577abd99
+Content-Type: application/json
+
+{
+    "message": "This is a new message"
+}
+
+###
+
+
+
+
+### comment api
+
+
+### get comments by post
+
+GET http://localhost:3001/api/comment?post=673211df2b040cf7577abd99
+
+###
+
+
+### create comment
+
+POST http://localhost:3001/api/comment
+Content-Type: application/json
+
+{
+    "post": "673211df2b040cf7577abd99",
+    "sender": "45678",
+    "message": "This is a comment"
+}
+
+###

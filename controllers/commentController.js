@@ -1,6 +1,7 @@
 import Comment from '../models/commentModel.js';
+import asyncHandler from "express-async-handler";
 
-const createComment = async (req, res) => {
+const createComment = asyncHandler(async (req, res) => {
     const { message, sender, post } = req.body;
     if (!message || !sender || !post) {
         res.status(400);
@@ -15,15 +16,15 @@ const createComment = async (req, res) => {
         success: true,
         comment: newComment
     })
-}
+})
 
-const getCommentByPost = async (req, res) => {
+const getCommentByPost = asyncHandler(async (req, res) => {
     const post = req.query.post;
     const comments = await Comment.find({ post });
     res.json({
         success: true,
         comments
     })
-}
+})
 
 export { createComment, getCommentByPost };
