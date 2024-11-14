@@ -18,6 +18,23 @@ const createComment = asyncHandler(async (req, res) => {
     })
 })
 
+const getComment = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        res.status(400);
+        throw new Error("Please provide comment id");
+    }
+    const comment = await Comment.findById(id);
+    if (!comment) {
+        res.status(404);
+        throw new Error("Comment not found");
+    }
+    res.json({
+        success: true,
+        comment
+    })
+})
+
 const getCommentByPost = asyncHandler(async (req, res) => {
     const post = req.query.post;
     const comments = await Comment.find({ post });
@@ -27,4 +44,4 @@ const getCommentByPost = asyncHandler(async (req, res) => {
     })
 })
 
-export { createComment, getCommentByPost };
+export { createComment, getCommentByPost, getComment };
