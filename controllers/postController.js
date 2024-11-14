@@ -1,6 +1,7 @@
 import Post from '../models/postModel.js';
+import asyncHandler from "express-async-handler";
 
-const createPost = async (req, res) => {
+const createPost = asyncHandler(async (req, res) => {
     const { message, sender } = req.body;
     if (!message || !sender) {
         res.status(400);
@@ -14,18 +15,18 @@ const createPost = async (req, res) => {
         success: true,
         post: newPost
     })
-}
+})
 
-const getPostBySender = async (req, res) => {
+const getPostBySender = asyncHandler(async (req, res) => {
     const sender = req.query.sender;
     const posts = await Post.find({ sender });
     res.json({
         success: true,
         posts
     })
-}
+})
 
-const updatePost = async (req, res) => {
+const updatePost = asyncHandler(async (req, res) => {
     const { id } = req.params;
     if (!id) {
         res.status(400);
@@ -47,6 +48,6 @@ const updatePost = async (req, res) => {
         success: true,
         post
     })
-}
+})
 
 export { createPost, getPostBySender, updatePost };
