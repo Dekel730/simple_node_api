@@ -67,7 +67,7 @@ const updatePost = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error("Post not found");
     }
-    post.message = message || post.message;
+    post.message = message;
     await post.save();
     res.json({
         success: true,

@@ -44,4 +44,45 @@ const getCommentByPost = asyncHandler(async (req, res) => {
     })
 })
 
-export { createComment, getCommentByPost, getComment };
+const updateComment = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        res.status(400);
+        throw new Error("Please provide post id");
+    }
+    const { message } = req.body;
+    if (!message) {
+        res.status(400);
+        throw new Error("Please provide message");
+    }
+    const comment = await Comment.findById(id);
+    if (!comment) {
+        res.status(404);
+        throw new Error("Comment not found");
+    }
+    comment.message = message;
+    await comment.save();
+    res.json({
+        success: true,
+        comment
+    })
+});
+
+const deleteComment = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        res.status(400);
+        throw new Error("Please provide comment id");
+    }
+    const comment = await Comment.findById(id);
+    if (!comment) {
+        res.status(404);
+        throw new Error("Comment not found");
+    }
+    await Comment.findByIdAndDelete(id);
+    res.json({
+        success: true
+    })
+});
+
+export { createComment, getCommentByPost, getComment, updateComment, deleteComment };

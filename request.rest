@@ -65,7 +65,24 @@ Content-Type: application/json
 {
     "post": "673211df2b040cf7577abd99",
     "sender": "45678",
-    "message": "This is a comment"
+    "message": "This is a comment 2"
 }
+
+###
+
+### update comment
+
+PUT http://localhost:3001/api/comment/6736124b8673047dbc5708b3
+Content-Type: application/json
+
+{
+    "message": "This is a comment update"
+}
+
+###
+
+### delete comment
+
+DELETE http://localhost:3001/api/comment/673612b58673047dbc5708b8
 
 ###
