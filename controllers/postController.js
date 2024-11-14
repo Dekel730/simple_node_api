@@ -17,6 +17,31 @@ const createPost = asyncHandler(async (req, res) => {
     })
 })
 
+const getAllPosts = asyncHandler(async (req, res) => {
+    const posts = await Post.find({});
+    res.json({
+        success: true,
+        posts
+    })
+});
+
+const getPostById = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    if(!id) {
+        res.status(400);
+        throw new Error("Please provide post id");
+    }
+    const post = await Post.findById(id);
+    if (!post) {
+        res.status(404);
+        throw new Error("Post not found");
+    }
+    res.json({
+        success: true,
+        post
+    })
+})
+
 const getPostBySender = asyncHandler(async (req, res) => {
     const sender = req.query.sender;
     const posts = await Post.find({ sender });
@@ -50,4 +75,4 @@ const updatePost = asyncHandler(async (req, res) => {
     })
 })
 
-export { createPost, getPostBySender, updatePost };
+export { createPost, getPostBySender, updatePost, getAllPosts, getPostById };

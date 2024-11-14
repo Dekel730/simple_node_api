@@ -2,6 +2,31 @@
 ### post api
 
 
+### create post
+
+POST http://localhost:3001/api/post
+Content-Type: application/json
+
+{
+    "sender": "5555",
+    "message": "This is a new message"
+}
+
+
+###
+
+### get all posts
+
+GET http://localhost:3001/api/post/all
+
+###
+
+### get posts by id
+
+GET http://localhost:3001/api/post/67320cba1fd0f9c9b52dba0c
+
+###
+
 ### get posts by sender
 
 GET http://localhost:3001/api/post?sender=45678
