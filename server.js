@@ -4,6 +4,7 @@ import connectDB from './config/db.js';
 import colors from 'colors';
 import { errorHandler } from './middleware/errorMiddleware.js';
 import postRoutes from './routes/postRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
 
 dotenv.config();
 
@@ -23,5 +24,6 @@ app.listen(PORT, () => {
 })
 
 app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
 
 app.use(errorHandler);
