@@ -10,18 +10,16 @@ dotenv.config();
 
 const app = express();
 
-connectDB();
-
-
 const PORT = process.env.PORT || 3000;
 
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
-app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`)
-})
+connectDB(() => {
+	app.listen(PORT, () => {
+		console.log(`server is running on port ${PORT}`);
+	});
+});
 
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
